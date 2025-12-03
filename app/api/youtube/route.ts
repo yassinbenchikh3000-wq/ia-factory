@@ -1,46 +1,63 @@
 import { NextResponse } from "next/server";
-import { google } from "googleapis";
 
 export async function POST(req: Request) {
   try {
-    const { videoUrl, title, description } = await req.json();
+    const { videoBase64, accessToken } = await req.json();
 
-    if (!videoUrl) {
-      return NextResponse.json({ error: "Missing videoUrl" }, { status: 400 });
+    if (!accessToken) {
+      return NextResponse.json({ error: "Missing access token" }, { status: 400 });
     }
 
-    const oauth2Client = new google.auth.OAuth2(
-      process.env.YT_CLIENT_ID,
-      process.env.YT_CLIENT_SECRET,
-      process.env.YT_REDIRECT_URI,
+    // YouTube upload endpoint
+    const uploadInit = await fetch(
+      "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          snippet: {
+            title: "AI Generated Video",
+            description: "Uploaded automatically via user token",
+          },
+          status: {
+            privacyStatus: "public",
+          },
+        }),
+      }
     );
 
-    oauth2Client.setCredentials({
-      refresh_token: process.env.YT_REFRESH_TOKEN,
-    });
+    const uploadUrl = uploadInit.headers.get("location");
 
-    const youtube = google.youtube({ version: "v3", auth: oauth2Client });
+    if (!uploadUrl) {
+      return NextResponse.json(
+        { error: "Failed to create upload session" },
+        { status: 500 }
+      );
+    }
 
-    const upload = await youtube.videos.insert({
-      part: ["snippet", "status"],
-      requestBody: {
-        snippet: {
-          title: title || "AI Factory Auto Video",
-          description: description || "",
-        },
-        status: { privacyStatus: "public" },
+    // Upload the raw video data
+    const buffer = Buffer.from(videoBase64, "base64");
+
+    const uploadFinal = await fetch(uploadUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "video/mp4",
       },
-      media: {
-        body: await fetch(videoUrl).then((res) => res.body),
-      },
+      body: buffer,
     });
 
-    return NextResponse.json({
-      success: true,
-      youtube: upload.data,
-    });
-  } catch (error) {
-    console.error("YouTube upload error:", error);
-    return NextResponse.json({ error: "YouTube upload failed" }, { status: 500 });
+    if (!uploadFinal.ok) {
+      return NextResponse.json(
+        { error: "Failed to upload video" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
