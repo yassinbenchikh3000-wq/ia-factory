@@ -1,0 +1,156 @@
+/* ===============================
+    TAILWIND (OBLIGATOIRE)
+================================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =================================
+    GLOBAL RESET
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  color: #fce4ec;
+}
+
+/* =================================
+    GLOBAL CYBERPUNK BACKGROUND
+================================= */
+.cyber-bg {
+  background: radial-gradient(circle at 30% 20%, #ff0a88 0%, #180015 40%, #000000 100%);
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+/* =================================
+    TEXT GLOW UTILS
+================================= */
+.text-glow {
+  text-shadow: 0 0 15px #ff409d, 0 0 25px #ff0077;
+}
+
+.drop-glow {
+  filter: drop-shadow(0 0 10px #ff1493);
+}
+
+/* =================================
+    CARD CYBER STYLE
+================================= */
+.cyber-card {
+  background: rgba(255, 0, 130, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 0, 160, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(255, 0, 150, 0.3);
+  transition: 0.25s ease-in-out;
+}
+
+.cyber-card:hover {
+  border-color: #ff66c4;
+  box-shadow: 0 0 30px rgba(255, 0, 200, 0.4);
+  transform: translateY(-3px);
+}
+
+/* =================================
+    INPUTS CYBER STYLE
+================================= */
+.cyber-input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 0, 170, 0.12);
+  border: 1px solid rgba(255, 0, 190, 0.4);
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.cyber-input::placeholder {
+  color: rgba(255, 200, 230, 0.4);
+}
+
+.cyber-input:focus {
+  border-color: #ff5ccf;
+  box-shadow: 0 0 12px rgba(255, 0, 200, 0.6);
+}
+
+/* =================================
+    BUTTONS STYLE
+================================= */
+.cyber-btn {
+  padding: 12px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ff3cac, #784ba0, #2b86c5);
+  color: white;
+  text-shadow: 0 0 8px #ff7ecb;
+  transition: 0.2s ease-in-out;
+  border: none;
+}
+
+.cyber-btn:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 18px rgba(255, 0, 200, 0.5);
+}
+
+/* =================================
+    NAVIGATION LINKS
+================================= */
+nav a {
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+nav a:hover {
+  color: white;
+  text-shadow: 0 0 8px #ff5aa7;
+}
+
+/* =================================
+    ANIMATIONS
+================================= */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* =================================
+    SCROLLBAR CUSTOM
+================================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #190015;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff1a8c;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4da6;
+}

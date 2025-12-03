@@ -1,0 +1,126 @@
+/* ============================================================
+   CYBER THEME — GLOBAL STYLES (NEON / FUTURISTIC VIBES)
+   Compatible Next.js App Router + Tailwind
+=============================================================== */
+
+/* ============ GLOBAL BACKGROUND ============ */
+
+body {
+  background: radial-gradient(circle at 30% 20%, #ff0a88 0%, #180015 40%, #000000 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  color: #ffcee4;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============ SCANLINE EFFECT ============ */
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 0, 150, 0.05) 0px,
+    rgba(255, 0, 150, 0.05) 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============ GLOW TEXT ============ */
+
+.text-glow {
+  text-shadow: 
+    0 0 8px #ff4ea3,
+    0 0 16px #ff4ea3,
+    0 0 32px #ff0077;
+}
+
+/* ============ NEON BUTTONS ============ */
+
+.cyber-btn {
+  background: linear-gradient(to right, #ff2a7f, #8a2be2);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid rgba(255, 0, 130, 0.4);
+  box-shadow: 0 0 12px rgba(255, 0, 160, 0.3);
+}
+
+.cyber-btn:hover {
+  filter: brightness(1.25);
+  box-shadow: 0 0 20px rgba(255, 0, 200, 0.6);
+}
+
+/* ============ CARD ============ */
+
+.cyber-card {
+  background: rgba(255, 0, 150, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 0, 180, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 130, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* ============ INPUTS ============ */
+
+.cyber-input {
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffcee4;
+  border: 1px solid rgba(255, 0, 140, 0.4);
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  transition: 0.15s ease;
+}
+
+.cyber-input::placeholder {
+  color: #ffafd2;
+}
+
+.cyber-input:focus {
+  border-color: #ff41c7;
+  box-shadow: 0 0 12px #ff41c7;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#ff0077, #8000ff);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#ff33aa, #9933ff);
+}
+
+/* ============ WRAPPER GRID ============ */
+
+.cyber-grid {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* ============ HEADER LOGO STYLE ============ */
+.logo-glow {
+  filter: drop-shadow(0 0 12px #ff009d);
+}
