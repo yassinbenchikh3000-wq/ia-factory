@@ -1,0 +1,127 @@
+/* =========================
+   THEME : GALAXIE / TROU NOIR
+   100% CSS, sans assets externes
+========================= */
+
+:root {
+  --space-0: #020208;
+  --space-1: #050012;
+  --space-2: #0a001f;
+  --violet: #a56cff;
+  --pink: #ff2bd6;
+  --blue: #62d5ff;
+}
+
+/* Body principal */
+.space-bg {
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 43, 214, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(98, 213, 255, 0.10), transparent 45%),
+    radial-gradient(circle at 30% 80%, rgba(165, 108, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 50% 50%, var(--space-2) 0%, var(--space-1) 35%, var(--space-0) 75%, #000 100%);
+}
+
+/* Champ d'étoiles (grain fin) */
+.space-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.25) 1px, transparent 1px);
+  background-size: 120px 120px, 180px 180px, 260px 260px;
+  background-position: 0 0, 40px 60px, 90px 20px;
+  filter: blur(0.2px);
+}
+
+/* Aura "trou noir" centrale très douce */
+.space-bg::after {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 30%,
+      rgba(165,108,255,0.10) 0%,
+      rgba(255,43,214,0.08) 18%,
+      rgba(98,213,255,0.06) 32%,
+      transparent 60%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+/* =========================
+   CARDS / BULLES UNIFIÉES
+========================= */
+.space-card {
+  width: 100%;
+  border-radius: 18px;
+  padding: 14px 14px 12px 14px;
+  background:
+    linear-gradient(135deg,
+      rgba(165,108,255,0.14),
+      rgba(255,43,214,0.08),
+      rgba(0,0,0,0.35)
+    );
+  border: 1px solid rgba(165,108,255,0.28);
+  box-shadow:
+    0 0 18px rgba(165,108,255,0.18),
+    inset 0 0 22px rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* Petits titres dans bulles */
+.space-card-title {
+  margin: 0 0 6px 0;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #f7f2ff;
+  text-shadow: 0 0 10px rgba(165,108,255,0.45);
+}
+
+.space-card-sub {
+  margin: 0 0 10px 0;
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* Inputs */
+.space-input {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(10, 0, 25, 0.55);
+  border: 1px solid rgba(165,108,255,0.28);
+  color: white;
+  outline: none;
+}
+
+.space-input:focus {
+  border-color: rgba(255, 43, 214, 0.6);
+  box-shadow: 0 0 12px rgba(255, 43, 214, 0.25);
+}
+
+/* Boutons */
+.space-btn {
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  background:
+    linear-gradient(90deg,
+      rgba(165,108,255,0.25),
+      rgba(255,43,214,0.25)
+    );
+  border: 1px solid rgba(165,108,255,0.35);
+  transition: 0.2s ease;
+}
+
+.space-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(165,108,255,0.25);
+}
